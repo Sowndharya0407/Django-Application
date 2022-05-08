@@ -1,0 +1,38 @@
+{% extends 'blogApp/base.html' %}
+
+{% block content %}
+<div class="row"> 
+<div class="col-md-12">
+    <h5>Blogs</h5>
+    <div class="card card-body"> 
+        <a class="btn btn-info btn-sn btn-block" href="{% url 'create_blog' %}">Create Blog</a>   
+        <br>   
+        <table class="table-sm">
+            <thead>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Body</th>                
+                <th>Actions</th>
+                
+            </thead>
+             {% if blogs %}
+                {% for blog in blogs %}
+                    <tr>
+                        <td>{{ blog.author }}</td>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.body }} </td>                        
+                        <td><a class="btn btn-warning btn-sm" href="{% url 'update_blog' blog.id %}">Update</a>
+                            <a class="btn btn-danger btn-sm"  href="{% url 'delete_blog' blog.id %}">Delete</a>
+                        </td>
+                        
+                        
+                    </tr>
+                {% endfor %}
+
+            {% endif %}
+
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}
